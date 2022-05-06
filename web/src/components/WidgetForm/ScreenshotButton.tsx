@@ -1,11 +1,11 @@
-import { Camera, Trash } from "phosphor-react";
-import html2canvas from "html2canvas";
-import { useState } from "react";
-import { Loading } from "../Loading";
+import html2canvas from 'html2canvas';
+import { Camera, Trash } from 'phosphor-react';
+import { useState } from 'react';
+import { Loading } from '../Loading';
 
 interface ScreenshotButtonProps {
-  onScreenshotTook: (screenshot: string | null) => void;
   screenshot: string | null;
+  onScreenshotTook: (screenshot: string | null) => void;
 }
 
 export function ScreenshotButton({
@@ -16,10 +16,11 @@ export function ScreenshotButton({
 
   async function handleTakeScreenshot() {
     setIsTakingScreenshot(true);
-    const canvas = await html2canvas(document.querySelector("html")!);
-    const base64image = canvas.toDataURL("image/png");
+    const canvas = await html2canvas(document.querySelector('html')!);
+    const base64image = canvas.toDataURL('image/png');
 
     onScreenshotTook(base64image);
+
     setIsTakingScreenshot(false);
   }
 
@@ -31,7 +32,7 @@ export function ScreenshotButton({
         onClick={() => onScreenshotTook(null)}
         style={{
           backgroundImage: `url(${screenshot})`,
-          backgroundPosition: "right bottom",
+          backgroundPosition: 'right bottom',
           backgroundSize: 180,
         }}
       >
@@ -44,9 +45,9 @@ export function ScreenshotButton({
     <button
       type="button"
       onClick={handleTakeScreenshot}
-      className="p-2 bg-zinc-800 rounded-md border-transparent hover:bg-zinc-700 transitions-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-brand-500"
+      className="p-2 bg-zinc-800 rounded-md border-transparent hover:bg-zinc-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-brand-500"
     >
-      {isTakingScreenshot ? <Loading /> : <Camera className="w-6 h-6 " />}
+      {isTakingScreenshot ? <Loading /> : <Camera className="h-6 w-6" />}
     </button>
   );
 }
